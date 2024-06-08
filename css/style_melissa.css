@@ -1,0 +1,25 @@
+.news-title {
+    font-weight: bold;  /* Negrita */
+    color: #2c3e50;    /* Color personalizado */
+    margin-bottom: 20px; /* Margen inferior */
+  }
+
+  .highlight {
+    color: #48adff;  /* Color rojo para resaltar */
+    font-style: italic; /* Cursiva */
+    text-decoration: underline; /* Subrayado */
+    font-size: 1.2em; /* Tamaño de fuente ligeramente mayor */
+    margin-left: 5px; /* Margen izquierdo */
+    margin-right: 5px; /* Margen derecho */
+    margin-top: 0; /* Margen superior */
+    margin-bottom: 0; /* Margen inferior */
+  }
+
+  .section-sub-title {
+    font-weight: bold;  /* Negrita */
+    color: #34495e;    /* Color personalizado */
+    margin-top: 40px;  /* Margen superior */
+    margin-bottom: 20px; /* Margen inferior */
+    border-bottom: 2px; /* Línea inferior */
+    padding-bottom: 10px; /* Espaciado inferior */
+  }
