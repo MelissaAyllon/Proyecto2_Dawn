@@ -1,24 +1,55 @@
 
 
 let loaded = ( eventLoaded ) => {
-  
+    
+    /*  Primera parte alerta    */
     window.alert("landing page loaded");
     console.log( eventLoaded );
     debugger;
 
+    /*  Segunda parte - document API    */
     let myform = document.getElementById('formulario');
-
+    debugger
     //actua como hanlder del evento submit
-    myform.addEventListener('submit', ( eventSubmit ) => { 
+    myform.addEventListener('submit', (eventSubmit) => { 
         
+        eventSubmit.preventDefault();
+        // Elementos
+        var elemento1 = document.getElementById('nombre-input')
+        var elemento2 = document.getElementById('email-input')
 
-        debugger;
-    
+        var nombre = elemento1.value.trim();
+        var email = elemento2.value.trim();
+        
+        if(nombre.length == 0){
+            elemento1.focus();
+            alert('Por favor, ingrese un nombre.');
+            return;
+        }
+        if (email.length === 0) {
+            elemento2.focus();
+            alert('Por favor, ingrese su correo electrónico.');
+            return;
+        }
+
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            // Muestra un mensaje de alerta con la validación de correo electrónico
+            elemento2.focus();
+            alert('Por favor, ingrese un correo electrónico válido.');
+            return;
+        }
+
+        alert('Formulario válido. Procediendo con el envío...');
+
+
+        debugger; 
     })
+    
 }
 
 window.addEventListener("DOMContentLoaded", loaded);
-
+/*
 document.addEventListener('DOMContentLoaded', function () {
     var formulario = document.getElementById('formulario');
 
@@ -69,6 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 });
-
+*/
 
   
