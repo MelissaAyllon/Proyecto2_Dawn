@@ -1,3 +1,14 @@
+let cargar_datos = async () => {
+    const url = "https://upheld-radar-422702-h0-default-rtdb.firebaseio.com/colleccion.json"; // Reemplaza con la URL real de la API o recurso
+    const respuesta = await fetch(url);
+    if (!respuesta.ok) {
+        console.error("Error:", respuesta.status);
+        return;
+    }
+    debugger;
+    const datos = await respuesta.json();
+    console.log(datos); // Procesar o mostrar los datos obtenidos
+}
 
 
 let loaded = ( eventLoaded ) => {
@@ -60,6 +71,8 @@ let loaded = ( eventLoaded ) => {
         }).catch((error) => {
             console.error(error);
         })
+
+        cargar_datos();
 
         debugger; 
     })
