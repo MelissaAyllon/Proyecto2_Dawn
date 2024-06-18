@@ -34,14 +34,17 @@ let update_datos = (datos) => {
 
     // Plantilla para las filas de la tabla
     let template = (categoria, conteo) => `
-        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-            <div class="card-header">KPOP-GROUP</div>
-            <div class="card-body">
-                <h5 class="card-title">${categoria}</h5>
-                <p class="card-text">${conteo}</p>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${categoria}</h5>
+                    <p class="card-text">${conteo}</p>
+                </div>
             </div>
         </div>`;
 
+    tableBody.innerHTML = `<h3 class="d-flex align-items-center"><span class="me-1"><img src="images/envelope-outline.svg" alt="Image" class="img-fluid"></span><span>FAV KPOP GROUPS COUNTS</span></h3>`;
+    
     // Recorrer el mapa y agregar filas a la tabla
     for (let categoria in countMap) {
         if (countMap.hasOwnProperty(categoria)) {
@@ -94,6 +97,8 @@ let loaded = ( eventLoaded ) => {
         alert('Formulario válido. Procediendo con el envío...');
 
         const datos = {
+            nombre : elemento1.value,
+            email : elemento2.value,
             favGroup : elemento3.value
         };
         
