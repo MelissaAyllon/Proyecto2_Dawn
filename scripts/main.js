@@ -7,9 +7,48 @@ let cargar_datos = async () => {
     }
     debugger;
     const datos = await respuesta.json();
-    console.log(datos); // Procesar o mostrar los datos obtenidos
+    update_datos(datos) // Procesar o mostrar los datos obtenidos
 }
 
+let update_datos = (datos) => {
+
+    const tableBody = document.getElementById("contenido-dinamico");
+    tableBody.innerHTML = ""; // Limpiar cualquier contenido existente
+
+    // Mapa para contar las ocurrencias de cada valor específico
+    const countMap = {};
+
+    // Recorrer los datos y contar los valores específicos
+    for (let key in datos) {
+        if (datos.hasOwnProperty(key)) {
+            const item = datos[key];
+            const specificValue = item.favGroup; // Suponiendo que quieres contar las categorías
+
+            if (countMap[specificValue]) {
+                countMap[specificValue]++;
+            } else {
+                countMap[specificValue] = 1;
+            }
+        }
+    }
+
+    // Plantilla para las filas de la tabla
+    let template = (categoria, conteo) => `
+        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header">KPOP-GROUP</div>
+            <div class="card-body">
+                <h5 class="card-title">${categoria}</h5>
+                <p class="card-text">${conteo}</p>
+            </div>
+        </div>`;
+
+    // Recorrer el mapa y agregar filas a la tabla
+    for (let categoria in countMap) {
+        if (countMap.hasOwnProperty(categoria)) {
+            tableBody.innerHTML += template(categoria, countMap[categoria]);
+        }
+    }
+}
 
 let loaded = ( eventLoaded ) => {
     
@@ -28,6 +67,7 @@ let loaded = ( eventLoaded ) => {
         // Elementos
         var elemento1 = document.getElementById('nombre-input')
         var elemento2 = document.getElementById('email-input')
+        var elemento3 = document.getElementById('kpop-group')
 
         var nombre = elemento1.value.trim();
         var email = elemento2.value.trim();
@@ -54,8 +94,7 @@ let loaded = ( eventLoaded ) => {
         alert('Formulario válido. Procediendo con el envío...');
 
         const datos = {
-            nombre: nombre,
-            email: email
+            favGroup : elemento3.value
         };
         
         fetch("https://upheld-radar-422702-h0-default-rtdb.firebaseio.com/colleccion.json",
